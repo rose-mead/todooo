@@ -17,13 +17,13 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const task = {
-        name: req.body.id,
-        priority: req.body.priority
+        name: req.body.newTask,
+        priority: 1
     }
 
     db.addTask(task)
         .then(response => {
-            console.log(response);
+            res.json({})
         })
         .catch(err => {
             console.log(err)
@@ -36,7 +36,7 @@ router.patch('/:id', (req, res) => {
 
     db.updateTask(task, req.params.id)
         .then(response => {
-            console.log(response)
+            res.json({})
         })
         .catch(err => {
             console.log(err)
@@ -47,7 +47,7 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     db.deleteTask(req.params.id)
         .then(response => {
-            console.log(response);
+            res.json({})
         })
         .catch(err => {
             console.log(err) 

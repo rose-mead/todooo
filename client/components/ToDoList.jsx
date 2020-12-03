@@ -1,22 +1,26 @@
 import React from "react";
+import {connect} from 'react-redux'
+import ToDoItem from "./ToDoItem";
 
 function ToDoList(props) {
+
   return (
       <>
     <input id="toggle-all" className="toggle-all" type="checkbox"/>
     <label htmlFor="toggle-all">Mark all as complete</label>
     <ul className="todo-list">
-      <li className="completed">
-        <div className="view">
-          <input className="toggle" type="checkbox" checked="" />
-          <label>Taste JavaScript</label>
-          <button className="destroy"></button>
-        </div>
-        <input className="edit" value="Create a TodoMVC template" />
-      </li>
+      {props.tasks.map(task => {
+          return <ToDoItem task={task} key={task.id}/>
+      })}
     </ul>
     </>
   );
 }
 
-export default ToDoList;
+function mapStateToProps(globalState) {
+    return {
+        tasks: globalState.tasks
+    }
+}
+
+export default connect(mapStateToProps)(ToDoList)

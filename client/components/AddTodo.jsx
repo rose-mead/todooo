@@ -1,11 +1,44 @@
-import React from 'react'
+import React from "react";
+import { createTask } from "../actions";
+import { connect } from "react-redux"
 
-function AddTodo (props) {
-  return (
-    <>
-      <input className="new-todo" placeholder="What needs to be done?" autoFocus={true} />
-    </>
-  )
+class AddTodo extends React.Component {
+  state = {
+    newTask: ''
+  }
+
+  handleChange = (evt) => {
+    this.setState({
+      newTask: evt.target.value
+    })
+  }
+
+  handleSubmit = (evt) => {
+    if (evt.key === "Enter"){
+      this.props.dispatch(createTask(this.state))
+      .then(() => {
+        this.props.refreshList()
+        this.setState({
+          newTask: ''
+        })
+      })
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <input
+          className="new-todo"
+          placeholder="What needs to be done?"
+          autoFocus={true}
+          onChange={this.handleChange}
+          onKeyPress={this.handleSubmit}
+          value={this.state.newTask}
+        />
+      </>
+    )
+  }
 }
 
-export default AddTodo
+export default connect()(AddTodo)
