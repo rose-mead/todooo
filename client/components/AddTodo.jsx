@@ -4,7 +4,8 @@ import { connect } from "react-redux"
 
 class AddTodo extends React.Component {
   state = {
-    newTask: ''
+    newTask: '',
+    status: 0,
   }
 
   handleChange = (evt) => {

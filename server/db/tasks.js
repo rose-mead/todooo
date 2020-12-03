@@ -1,7 +1,7 @@
 const connection = require('./connection')
 
 function getTasks(db = connection) {
-    return db('tasks').select('*')
+    return db('tasks').select('*').orderBy('id', 'desc')
 }
 
 function addTask(task, db = connection) {
@@ -16,9 +16,14 @@ function deleteTask(id, db = connection) {
     return db('tasks').delete().where('id', id)
 }
 
+function deleteCompleted(db = connection) {
+    return db('tasks').delete().where('status', 1)
+}
+
 module.exports = {
     getTasks,
     addTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    deleteCompleted
 }

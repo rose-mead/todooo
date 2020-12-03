@@ -18,7 +18,6 @@ export function addTask(task) {
 export function deleteTask(id) {
     return request.delete(`/tasks/${id}`)
     .then(res => {
-        console.log('adf');
         return res.body
     })
 }
@@ -26,6 +25,13 @@ export function deleteTask(id) {
 export function updateTask(id, task) {
     return request.patch(`/tasks/${id}`)
     .send(task)
+    .then(res => {
+        return res.body
+    })
+}
+
+export function deleteCompleted() {
+    return request.get(`/tasks/clear`)
     .then(res => {
         return res.body
     })

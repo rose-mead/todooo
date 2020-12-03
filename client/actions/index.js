@@ -1,5 +1,5 @@
 export const SET_TASKS = 'SET_TASKS'
-import { getTasks, addTask, updateTask, deleteTask } from '../apis'
+import { getTasks, addTask, updateTask, deleteTask, deleteCompleted } from '../apis'
 
 export function setTasks(tasks) {
     return {
@@ -44,7 +44,16 @@ export function removeTask(id) {
     return (dispatch) => {
         return deleteTask(id)
             .then(() => {
-                console.log('jhmvn');
+                dispatch(fetchTasks())
+                return null
+            })
+    }
+}
+
+export function clearCompleted() {
+    return (dispatch) => {
+        return deleteCompleted() 
+            .then(() => {
                 dispatch(fetchTasks())
                 return null
             })

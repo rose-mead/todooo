@@ -55,4 +55,15 @@ router.delete('/:id', (req, res) => {
         })
 })
 
+router.get('/clear', (req, res) => {
+    db.deleteCompleted() 
+        .then(response => {
+            res.json({})
+        })
+        .catch(err => {
+            console.log(err) 
+            res.status(500).send('cannot clear completed tasks')
+        })
+})
+
 module.exports = router

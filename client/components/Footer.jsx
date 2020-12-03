@@ -1,10 +1,19 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { clearCompleted } from '../actions'
 
 function Footer(props) {
+  const handleClear = () => {
+    props.dispatch(clearCompleted())
+  }
+
+  const taskTotal = props.tasks.filter(task => task.status == 0).length 
+
     return(
         <>
         {/* <!-- This should be `0 items left` by default --> */}
-        <span className="todo-count"><strong>0</strong> item left</span>
+        <span className="todo-count"><strong>{taskTotal}</strong> item left</span>
+        
         {/* <!-- Remove this if you don't implement routing --> */}
         <ul className="filters">
           <li>
@@ -18,9 +27,15 @@ function Footer(props) {
           </li>
         </ul>
         {/* <!-- Hidden if no completed items are left ↓ --> */}
-        <button className="clear-completed">Clear completed</button>
+        <button className="clear-completed" onClick={handleClear}>Clear completed</button>
         </>
     )
 }
 
-export default Footer
+function mapStateToProps (globalState) {
+  return {
+    tasks: globalState.tasks
+  }
+}
+
+export default connect(mapStateToProps)(Footer)
