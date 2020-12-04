@@ -9,19 +9,11 @@ class ToDoItem extends React.Component {
     editedTodo: ''
   }
 
-  // editInput = React.createRef()
-
   componentDidMount() {
     this.setState({
       editedTodo: this.props.task.name
     })
   }
-
-  // componentDidUpdate (prevProps, prevState) {
-  //   if (prevState.editing !== this.state.editing && this.state.editing) {
-  //     this.editInput.current.focus()
-  //   }
-  // }
 
   setEditing = (value) => {
     this.setState({
@@ -61,8 +53,6 @@ class ToDoItem extends React.Component {
     this.props.dispatch(modifyTask(this.props.task.id, updatedTask))
   }
 
- 
-
   render() {
 
     const { task } = this.props
@@ -80,7 +70,10 @@ class ToDoItem extends React.Component {
         </div>
         
         <form onSubmit={this.handleSubmit}>
-          <input className="edit" value={this.state.editedTodo} onChange={this.handleChange}/>
+          {/* <input className="edit" value={this.state.editedTodo} onChange={this.handleChange}/> */}
+          <input className="edit" value={this.state.editedTodo} onChange={this.handleChange} ref={ref => ref && ref.focus()}
+    onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
+    />
         </form>
       </li>
     )
