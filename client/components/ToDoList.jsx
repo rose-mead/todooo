@@ -4,6 +4,7 @@ import ToDoItem from "./ToDoItem";
 
 function ToDoList(props) {
 
+
   return (
       <>
     <input id="toggle-all" className="toggle-all" type="checkbox"/>
@@ -17,10 +18,5 @@ function ToDoList(props) {
   );
 }
 
-function mapStateToProps(globalState) {
-    return {
-        tasks: globalState.tasks
-    }
-}
 
-export default connect(mapStateToProps)(ToDoList)
+export default connect()(ToDoList)

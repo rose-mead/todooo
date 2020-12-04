@@ -18,7 +18,6 @@ class AddTodo extends React.Component {
     if (evt.key === "Enter"){
       this.props.dispatch(createTask(this.state))
       .then(() => {
-        this.props.refreshList()
         this.setState({
           newTask: ''
         })
