@@ -15,8 +15,6 @@ class Main extends React.Component {
     const {filter} = this.props.match.params
     const filteredTasks = this.props.tasks.filter(task => (filter == 'active' && task.status == 0 || filter == 'completed' && task.status == 1))
    
-    console.log(filteredTasks)
-    console.log(filter)
 
     // const tasks = this.props.tasks.filter(task => task.status == 0)
 
@@ -31,7 +29,7 @@ class Main extends React.Component {
         </section>
         <section className="main"></section>
         <footer className="footer">
-          <Footer/>
+          <Footer filter={filter}/>
         </footer>
         </>
     )

@@ -9,6 +9,14 @@ function Footer(props) {
 
   const taskTotal = props.tasks.filter(task => task.status == 0).length 
 
+  // switch(filter) {
+  //   case 'active':
+  //     return <li><a className="selected" href="#/">All</a></li>
+  //   case 'completed':
+  //     return <li><a className="selected" href="#/">All</a></li>
+  // }
+  
+
     return(
         <>
         {/* <!-- This should be `0 items left` by default --> */}
@@ -17,13 +25,13 @@ function Footer(props) {
         {/* <!-- Remove this if you don't implement routing --> */}
         <ul className="filters">
           <li>
-            <a className="selected" href="#/">All</a>
+            <a className={!props.filter && "selected"} href="#/">All</a>
           </li>
           <li>
-            <a href="#/active">Active</a>
+            <a className={props.filter == "active" ? "selected" : ""} href="#/active">Active</a>
           </li>
           <li>
-            <a href="#/completed">Completed</a>
+            <a className={props.filter == "completed" ? "selected" : ""} href="#/completed">Completed</a>
           </li>
         </ul>
         {/* <!-- Hidden if no completed items are left ↓ --> */}
