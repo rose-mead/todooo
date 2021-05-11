@@ -64,7 +64,7 @@ class ToDoItem extends React.Component {
         onBlur={() => this.setEditing(false)}
       >
         <div className="view" onDoubleClick={()=>this.setEditing(true)}>
-          <input className="toggle" type="checkbox" checked={task.status} onClick={this.handleTick}/>
+          <input className="toggle" type="checkbox" checked={task.status} onChange={this.handleTick}/>
           {!this.state.showEditform ? <label>{task.name}</label>: <EditToDo task={task}/>}
           <button className="destroy" onClick={ this.handleDelete}></button>
         </div>

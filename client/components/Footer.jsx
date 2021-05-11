@@ -25,7 +25,7 @@ function Footer(props) {
         {/* <!-- Remove this if you don't implement routing --> */}
         <ul className="filters">
           <li>
-            <a className={!props.filter && "selected"} href="#/">All</a>
+            <a className={!props.filter ? "selected" : ""} href="#/">All</a>
           </li>
           <li>
             <a className={props.filter == "active" ? "selected" : ""} href="#/active">Active</a>
