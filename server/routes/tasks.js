@@ -18,7 +18,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const task = {
         name: req.body.newTask,
-        status: 0
+        status: 0,
+        priority: 1,
+        details: ''
     }
 
     db.addTask(task)
